@@ -15,14 +15,14 @@ jobs:
       - name: Extract the sourcecode.zip
         run:  |
           # Check if file exist
-          if[ -f "sourcecode.zip" ]; then
-            echo "Extracting SourceCode zip file..."
+          if [ -f "sourcecode.zip" ]; then
+              echo "Extracting SourceCode zip file..."
 
-            #unzip the sourcecode.zip 
-            unzip -o sourcecode.zip
+              #unzip the sourcecode.zip 
+              unzip -o sourcecode.zip
 
-            #delete the .zip file 
-            rm sourcecode.zip
+              #delete the .zip file 
+              rm sourcecode.zip
           
           # if files does not exist
           else
