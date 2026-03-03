@@ -1,0 +1,38 @@
+name: Unzip My Source Code
+on:
+  push:
+    paths: 
+      - 'sourcecode.zip'  # trigger is sourcecode.zip
+jobs:
+  extract-and-commit:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write # bot to save the folder after extraction
+    steps:
+      - name: Catch the Code
+        uses: actions/checkout@v4
+
+      - name: Extract the sourcecode.zip
+        run:  |
+          # Check if file exist
+          if[ -f "sourcecode.zip"]; then
+            echo "Extracting SourceCode zip file..."
+
+            #unzip the sourcecode.zip 
+            unzip -o sourcecode.zip
+
+            #delete the .zip file 
+            rm sourcecode.zip
+          
+          # if files does not exist
+          else
+            echo "No Source code zip file found"
+          fi
+
+      - name: Save the extracted folder to github
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Auto-extracted- project folder from sourcecode.zip" || echo "Nothing to commit"
+          git push
