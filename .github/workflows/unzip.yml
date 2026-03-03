@@ -15,7 +15,7 @@ jobs:
       - name: Extract the sourcecode.zip
         run:  |
           # Check if file exist
-          if[ -f "sourcecode.zip"]; then
+          if[ -f "sourcecode.zip" ]; then
             echo "Extracting SourceCode zip file..."
 
             #unzip the sourcecode.zip 
