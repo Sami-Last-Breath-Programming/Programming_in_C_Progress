@@ -1,8 +1,8 @@
-name: Unzip My Source Code
+name: Extract Sourcecode 7z
 on:
   push:
     paths: 
-      - 'sourcecode.zip'  # trigger is sourcecode.zip
+      - 'sourcecode.7z'  # Trigger only for .7z files
 jobs:
   extract-and-commit:
     runs-on: ubuntu-latest
@@ -12,21 +12,24 @@ jobs:
       - name: Catch the Code
         uses: actions/checkout@v4
 
-      - name: Extract the sourcecode.zip
+      - name: Install 7-Zip
+        run: sudo apt-get install -y p7zip-full
+
+      - name: Extract the sourcecode.7z
         run:  |
-          # Check if file exist
-          if [ -f "sourcecode.zip" ]; then
-              echo "Extracting SourceCode zip file..."
+          # Check if file exist (Notice the spaces!)
+          if [ -f "sourcecode.7z" ]; then
+            echo "Found sourcecode.7z! Extracting..."
 
-              #unzip the sourcecode.zip 
-              unzip -o sourcecode.zip
+            # 'x' means extract with full paths (keeps folders intact)
+            # '-y' means yes to all prompts
+            7z x sourcecode.7z -y
 
-              #delete the .zip file 
-              rm sourcecode.zip
+            # delete the .7z file 
+            rm sourcecode.7z
           
-          # if files does not exist
           else
-            echo "No Source code zip file found"
+            echo "No Source code 7z file found"
           fi
 
       - name: Save the extracted folder to github
@@ -34,5 +37,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Auto-extracted- project folder from sourcecode.zip" || echo "Nothing to commit"
+          git commit -m "Auto-extracted project from sourcecode.7z " || echo "Nothing to commit"
           git push
