@@ -1,0 +1,52 @@
+# Lecture 1 
+L1/outputs
+L1/homework/output
+
+# Lecture 2
+L2/outputs
+
+# Lecture 3
+L3/outputs
+
+# Lecture 4
+L4/outputs
+L4/homework/outputs
+
+# Lecture 5
+L5/outputs
+L5/homework/outputs
+
+# Lecture 6
+L6/outputs
+L6/homework/outputs
+
+# Lecture 7
+L7/outputs
+L7/homework/outputs
+
+# Lecture 8
+L8/outputs
+L8/homework/outputs
+
+# Lecture 9
+L9/outputs
+L9/homework/outputs
+L9/homework/dateAndTime/output
+
+# Lecture 10
+L10/outputs
+L10/homework/outputs
+L10/homework/h6/output
+L10/lookup/output
+L10/Dic/output
+
+# Lecture 11
+L11/outputs
+L11/homework/_outputs
+L11/LinkedList/output
+
+# Don't want to share env
+.env
+
+# Others
+.vscode
