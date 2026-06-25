@@ -45,6 +45,9 @@ L11/outputs
 L11/homework/_outputs
 L11/LinkedList/output
 
+# Lecture 12
+L12/outputs
+
 # Don't want to share env
 .env
 
