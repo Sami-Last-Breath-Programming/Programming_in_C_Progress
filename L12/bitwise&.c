@@ -1,4 +1,4 @@
-// Bitwise And 
+// Bitwise And use for masking, read write, and clearning bit
 
 #include <stdio.h>
 #include <stdlib.h>
