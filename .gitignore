@@ -47,6 +47,7 @@ L11/LinkedList/output
 
 # Lecture 12
 L12/outputs
+L12/CLI_Frame/output
 
 # Don't want to share env
 .env
