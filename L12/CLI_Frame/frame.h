@@ -1,13 +1,23 @@
-#ifndef UI_FRAME_H
-#define UI_FRAME_H
+#pragma once
 
 // Include
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+
+// Platfrom 
+#ifdef _WIN32
+	#include <windows.h>	
+	#define SLEEP(x) Sleep(1000 * (x))
+	#define CLEAR "cls"
+#else
+	#include <unistd.h>
+	#define SLEEP(x) sleep((x))
+	#define CLEAR "clear"
+#endif
+
 
 // Clang Fix
-#pragma clang diagnostic push 
+#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu-binary-literal"
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 
@@ -26,10 +36,10 @@ typedef unsigned int Second;
 
 // Declarations
 int flag = 0b10000000;
-void Render(Frame);
-void Wait(Second);
-void Clear(void);
-void CHECK_FLAGS(void);
+static inline void Render(Frame);
+static inline void Wait(Second);
+static inline void Clear(void);
+static inline void CHECK_FLAGS(void);
 
 
 // All Frames of the UI=
@@ -43,7 +53,7 @@ Frame frame_0 =
     "|                           |\n"
     "|___________________________|\n";
 
-Frame frame_1 = 
+Frame frame_1 =
     " ___________________________\n"
     "|                           |\n"
     "|                           |\n"
@@ -53,7 +63,7 @@ Frame frame_1 =
     "|                           |\n"
     "|___________________________|\n";
 
-Frame frame_2 = 
+Frame frame_2 =
     " ___________________________\n"
     "|                           |\n"
     "|                           |\n"
@@ -63,7 +73,7 @@ Frame frame_2 =
     "|                           |\n"
     "|___________________________|\n";
 
-Frame frame_3 = 
+Frame frame_3 =
     " ___________________________\n"
     "|                           |\n"
     "|                           |\n"
@@ -74,15 +84,15 @@ Frame frame_3 =
     "|___________________________|\n";
 
 // Functions
-void Render(Frame f) { printf("%s", f); }
-void Wait(Second s) { sleep(s); }
-void Clear(void) { system("clear"); }
-void CHECK_FLAGS(void)
+static inline void Render(Frame f) { printf("%s", f); }
+static inline void Wait(Second s) { SLEEP(s); }
+static inline void Clear(void) { system(CLEAR); }
+static inline void CHECK_FLAGS(void)
 {
     if (flag & IS_RED)
     {
         Render(frame_1);
-        flag = (~flag) & IS_GREEN; 
+        flag = (~flag) & IS_GREEN;
     }
     else if (flag & IS_GREEN)
     {
@@ -100,6 +110,4 @@ void CHECK_FLAGS(void)
         exit(EXIT_FAILURE);
     }
 }
-
 #pragma clang diagnostic pop
-#endif
